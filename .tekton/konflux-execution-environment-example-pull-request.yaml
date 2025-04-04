@@ -260,7 +260,7 @@ spec:
         value: "true"
       - name: ADDITIONAL_BASE_IMAGES
         value:
-          - $(tasks.run-ansible-builder.results.SCRIPT_BASE_IMAGE)
+          - $(tasks.run-ansible-builder.results.SCRIPT_RUNNER_IMAGE_REFERENCE)
       runAfter:
       - run-ansible-builder
       taskRef:
