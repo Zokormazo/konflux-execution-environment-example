@@ -211,6 +211,8 @@ spec:
           value: $(params.image-expires-after)
         - name: SCRIPT_RUNNER_IMAGE
           value: ghcr.io/ansible/community-ansible-dev-tools:latest
+        - name: SCRIPT_ARTIFACT_RELATIVE_PATH
+          value: "../"
         - name: SCRIPT
           value: ansible-builder create
         - name: HERMETIC
