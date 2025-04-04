@@ -223,7 +223,7 @@ spec:
           - name: url
             value: https://github.com/Zokormazo/build-definitions.git
           - name: revision
-            value: in-git-script
+            value: run-script-hack
           - name: pathInRepo
             value: task/run-script-oci-ta/0.1/run-script-oci-ta.yaml
     - matrix:
