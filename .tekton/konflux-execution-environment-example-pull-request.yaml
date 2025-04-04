@@ -207,6 +207,8 @@ spec:
       params:
         - name: ociStorage
           value: $(params.output-image).script
+        - name: ociArtifactExpiresAfter
+          value: $(params.image-expires-after)
         - name: SCRIPT_RUNNER_IMAGE
           value: ghcr.io/ansible/community-ansible-dev-tools:latest
         - name: SCRIPT
