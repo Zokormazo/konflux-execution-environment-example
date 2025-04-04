@@ -33,7 +33,7 @@ spec:
   - name: dockerfile
     value: Containerfile
   - name: path-context
-    value: context
+    value: .
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -211,6 +211,8 @@ spec:
           value: $(params.image-expires-after)
         - name: SCRIPT_RUNNER_IMAGE
           value: ghcr.io/ansible/community-ansible-dev-tools:latest
+        - name: SCRIPT_ARTIFACT_RELATIVE_PATH
+          value: context
         - name: SCRIPT
           value: ansible-builder create
         - name: HERMETIC
