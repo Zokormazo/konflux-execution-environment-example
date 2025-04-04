@@ -212,7 +212,10 @@ spec:
         - name: SCRIPT_RUNNER_IMAGE
           value: ghcr.io/ansible/community-ansible-dev-tools:latest
         - name: SCRIPT
-          value: ansible-builder create
+          value: |
+            ansible-builder create
+            echo -n "my string result" > "${SCRIPT_OUTPUT}"
+            echo -n '["my", "array", "result"]' > "${SCRIPT_OUTPUT_ARRAY}"
         - name: HERMETIC
           value: $(params.hermetic)
         - name: SOURCE_ARTIFACT
