@@ -205,20 +205,20 @@ spec:
         workspace: netrc
     - name: run-ansible-builder
       params:
-        - name: ociStorage
-          value: $(params.output-image).script
-        - name: ociArtifactExpiresAfter
-          value: $(params.image-expires-after)
-        - name: SCRIPT_RUNNER_IMAGE
-          value: ghcr.io/ansible/community-ansible-dev-tools:latest
-        - name: SCRIPT_ARTIFACT_RELATIVE_PATH
-          value: context
-        - name: SCRIPT
-          value: ansible-builder create
-        - name: HERMETIC
-          value: $(params.hermetic)
-        - name: SOURCE_ARTIFACT
-          value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+      - name: ociStorage
+        value: $(params.output-image).script
+      - name: ociArtifactExpiresAfter
+        value: $(params.image-expires-after)
+      - name: SCRIPT_RUNNER_IMAGE
+        value: ghcr.io/ansible/community-ansible-dev-tools:latest
+      - name: SCRIPT_ARTIFACT_RELATIVE_PATH
+        value: context
+      - name: SCRIPT
+        value: ansible-builder create
+      - name: HERMETIC
+        value: $(params.hermetic)
+      - name: SOURCE_ARTIFACT
+        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       runAfter:
       - prefetch-dependencies
       taskRef:
@@ -264,7 +264,7 @@ spec:
         value: "true"
       - name: ADDITIONAL_BASE_IMAGES
         value:
-          - $(tasks.run-ansible-builder.results.SCRIPT_RUNNER_IMAGE_REFERENCE)
+        - $(tasks.run-ansible-builder.results.SCRIPT_RUNNER_IMAGE_REFERENCE)
       runAfter:
       - run-ansible-builder
       taskRef:
@@ -629,7 +629,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-konflux-execution-environment-example
   workspaces:
   - name: git-auth
     secret:
