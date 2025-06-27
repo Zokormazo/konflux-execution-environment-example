@@ -205,20 +205,20 @@ spec:
         workspace: netrc
     - name: run-ansible-builder
       params:
-      - name: ociStorage
-        value: $(params.output-image).script
-      - name: ociArtifactExpiresAfter
-        value: $(params.image-expires-after)
-      - name: SCRIPT_RUNNER_IMAGE
-        value: ghcr.io/ansible/community-ansible-dev-tools:latest
-      - name: SCRIPT_ARTIFACT_RELATIVE_PATH
-        value: context
-      - name: SCRIPT
-        value: ansible-builder create
-      - name: HERMETIC
-        value: $(params.hermetic)
-      - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+        - name: ociStorage
+          value: $(params.output-image).script
+        - name: ociArtifactExpiresAfter
+          value: $(params.image-expires-after)
+        - name: SCRIPT_RUNNER_IMAGE
+          value: ghcr.io/ansible/community-ansible-dev-tools:latest@sha256:6a37877c11b55120761876d36518084149221053cd0d97aa9450bcb661125106
+        - name: SCRIPT_ARTIFACT_RELATIVE_PATH
+          value: context
+        - name: SCRIPT
+          value: ansible-builder create
+        - name: HERMETIC
+          value: $(params.hermetic)
+        - name: SOURCE_ARTIFACT
+          value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       runAfter:
       - prefetch-dependencies
       taskRef:
